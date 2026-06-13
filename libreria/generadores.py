@@ -1,10 +1,30 @@
+from random import random, gammavariate
 from math import log
-from random import random
 
-def gen_exponencial(media):
+def gen_exponencial_lamda(lamda: float) -> float:
+    """ 
+    Genera un dato Exponencial mediante el método de la 
+    Transformada Inversa usando la tasa (lamda): -ln(1-U)/lamda.
     """
-    Genera una variable aleatoria exponencial por el Método de la Transformada Inversa.
-    E[X] = media.
+    return -log(1.0 - random()) / lamda
+
+def gen_exponencial_media(media: float) -> float:
+    """ 
+    Genera un dato Exponencial mediante el método de la 
+    Transformada Inversa usando la media (E[X] = 1/lamda): -media * ln(1-U).
     """
-    # Usamos random() nativo que distribuye U(0,1)
-    return -media * log(random())
+    return -media * log(1.0 - random())
+
+def gen_n_exponenciales_parametros(n: int, lamda: float) -> list:
+    """ 
+    Genera 'n' datos Exponenciales mediante el método de la 
+    Transformada Inversa: -ln(1-U)/lamda.
+    """
+    return [gen_exponencial_lamda(lamda) for _ in range(n)]
+
+def gen_n_gammas_parametros(n: int, parametros: tuple) -> list:
+    """ 
+    Genera 'n' datos Gamma desempaquetando la tupla (alfa, beta). 
+    """
+    alfa, beta = parametros
+    return [gammavariate(alfa, beta) for _ in range(n)]

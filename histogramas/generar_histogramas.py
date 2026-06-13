@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from libreria.densidades import pdf_exponencial, pdf_gamma
+from libreria.distribuciones import pdf_exponencial, pdf_gamma
 from libreria.estadisticos import calcular_media_muestral, calcular_varianza_muestral
 
 def graficar_histograma_y_ajuste(tiempos: list, titulo: str, nombre_archivo: str):

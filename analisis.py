@@ -1,4 +1,6 @@
-from simulaciones import simular_fallo_1_tecnico, simular_fallo_2_tecnicos
+from simulaciones.simular_fallo_1_tecnico import simular_fallo_1_tecnico
+from simulaciones.simular_fallo_2_tecnicos import simular_fallo_2_tecnicos
+
 from libreria.estadisticos import calcular_estadisticos
 from histogramas.generar_histogramas import graficar_histograma_y_ajuste
 
