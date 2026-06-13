@@ -18,9 +18,9 @@ def ejecutar_montecarlo(funcion_simuladora, n_repuestos) -> list:
 def calcular_estadisticos(tiempos: list):
     """Calcula la media y la desviación estándar muestral de una lista de datos."""
     n = len(tiempos)
-    media = sum(tiempos) / n
-    varianza = sum((x - media) ** 2 for x in tiempos) / (n - 1)
-    desvio = math.sqrt(varianza)
+    media    = calcular_media_muestral(tiempos)
+    varianza = calcular_varianza_muestral(tiempos, media)
+    desvio   = math.sqrt(varianza)
     return media, desvio
 
 def graficar_histograma_y_ajuste(tiempos: list, titulo: str, nombre_archivo: str):
@@ -48,8 +48,8 @@ def graficar_histograma_y_ajuste(tiempos: list, titulo: str, nombre_archivo: str
     y_expon = [pdf_exponencial(xi, lamda_est) for xi in x_vals]
     y_gamma = [pdf_gamma(xi, forma_est, escala_est) for xi in x_vals]
     
-    plt.plot(x_vals, y_expon, 'r-', lw=2, label=f'Ajuste Expon(media={media_est:.2f})')
-    plt.plot(x_vals, y_gamma, 'g--', lw=2, label=f'Ajuste Gamma(k={forma_est:.2f})')
+    plt.plot(x_vals, y_expon, 'r-',  lw=2, label=f'Ajuste Expon($\\lambda$={1/media_est:.2f})')
+    plt.plot(x_vals, y_gamma, 'g--', lw=2, label=f'Ajuste Gamma($\\alpha$={forma_est:.2f}, $\\beta$={escala_est:.2f})')
     
     plt.title(titulo)
     plt.xlabel('Tiempo de fallo del sistema (meses)')
