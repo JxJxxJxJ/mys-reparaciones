@@ -49,3 +49,21 @@ def calcular_estadisticos(tiempos: list):
     ic_95      = calcular_intervalo_confianza_95(media, error_est)
 
     return media, desvio, error_est, mediana, ic_95
+
+# Estimadores
+def estimar_exp_momentos(datos: list) -> float:
+    """ Estima lamda (tasa) mediante Método de Momentos. E[X] = 1/lamda """
+    media = calcular_media_muestral(datos)
+    return 1.0 / media
+
+def estimar_gamma_momentos(datos: list) -> tuple:
+    """ 
+    Estima alfa (forma) y beta (escala) mediante Método de Momentos.
+    E[X] = alfa*beta, Var(X) = alfa*beta^2
+    """
+    media = calcular_media_muestral(datos)
+    var   = calcular_varianza_muestral(datos, media)
+    
+    beta = var / media
+    alfa = (media ** 2) / var
+    return (alfa, beta)

@@ -22,7 +22,6 @@ def pdf_gamma(x: float, alfa: float, beta: float) -> float:
     coeficiente = 1.0 / (math.gamma(alfa) * (beta ** alfa))
     return coeficiente * (x ** (alfa - 1)) * math.exp(-x / beta)
 
-def cdf_gamma(x: float, parametros: tuple) -> float:
+def cdf_gamma(x: float, alfa: float, beta: float) -> float:
     """ CDF teórica de la Gamma evaluada en x """
-    alfa, beta = parametros
     return stats.gamma.cdf(x, a=alfa, scale=beta)

@@ -1,4 +1,5 @@
 from simulaciones.parametros_y_tiempos_enunciado import S, N, INF, gen_tiempo_falla, gen_tiempo_reparacion
+
 """
 Ejercicio 1 - Problema de reparación con un operario.
 
