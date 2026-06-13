@@ -28,23 +28,23 @@ def graficar_histograma_y_ajuste(tiempos: list, titulo: str, nombre_archivo: str
     Genera el histograma y superpone los ajustes Exponencial y Gamma 
     estimados y evaluados 100% analíticamente.
     """
-    # 1. Uso de tus abstracciones para los estadísticos
-    media_est = calcular_media_muestral(tiempos)
+    # Calculo estadisticos para estimar parametros
+    media_est    = calcular_media_muestral(tiempos)
     varianza_est = calcular_varianza_muestral(tiempos, media_est)
     
-    # 2. Estimación teórica de parámetros (Método de los Momentos)
+    # Estimacion teorica de parametros (Metodo de los Momentos)
     lamda_est  = 1.0 / media_est
-    escala_est = varianza_est / media_est       # Beta (escala)
     forma_est  = (media_est ** 2) / varianza_est  # Alfa (forma)
+    escala_est = varianza_est / media_est         # Beta (escala)
     
-    # Preparamos el gráfico
+    # Preparo el grafico
     plt.figure(figsize=(8, 5))
     plt.hist(tiempos, bins=40, density=True, alpha=0.6, color='skyblue', edgecolor='white', label='Datos Simulados')
     
-    # Generamos el dominio x para evaluar las curvas
+    # Genero el dominio x para evaluar las curvas exp y gamma
     x_vals = [i * 0.1 for i in range(int(max(tiempos) * 10) + 1)]
     
-    # 3. ¡Chau SciPy! Evaluamos las densidades usando nuestras propias funciones matemáticas
+    # Evaluo las densidades
     y_expon = [pdf_exponencial(xi, lamda_est) for xi in x_vals]
     y_gamma = [pdf_gamma(xi, forma_est, escala_est) for xi in x_vals]
     
@@ -57,7 +57,7 @@ def graficar_histograma_y_ajuste(tiempos: list, titulo: str, nombre_archivo: str
     plt.legend()
     plt.grid(alpha=0.3)
     
-    # Guardado del archivo
+    # Guardo las fotos
     plt.savefig(nombre_archivo)
     plt.close()
     print(f"[*] Gráfico guardado: {nombre_archivo}")
