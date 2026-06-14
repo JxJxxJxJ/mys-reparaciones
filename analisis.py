@@ -35,7 +35,7 @@ if __name__ == "__main__":
     tiempos_base = [simular_fallo_1_tecnico(n_cajas_repuesto=3) for _ in range(N_SIM)]
     imprimir_resultados_escenario("ESCENARIO BASE (1 Operario, S=3)", tiempos_base)
     graficar_histograma_y_ajuste(tiempos_base, "Escenario Base (1 Operario, S=3)", "histogramas/hist_base.png")
-    imprimir_resultados_ks("ESCENARIO BASE (1 Operario, S=3)", tiempos_base[:100], n_sim_ks=1000)
+    imprimir_resultados_ks("ESCENARIO BASE (1 Operario, S=3)", tiempos_base[:10000], n_sim_ks=1000)
     
     # ---------------------------------------------------------
     # 2. ALTERNATIVA B: 1 Operario, S = 4 (Repuesto extra)
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     tiempos_alt_b = [simular_fallo_1_tecnico(n_cajas_repuesto=4) for _ in range(N_SIM)]
     imprimir_resultados_escenario("ALTERNATIVA B (1 Operario, S=4)", tiempos_alt_b)
     graficar_histograma_y_ajuste(tiempos_alt_b, "Alternativa B (Repuesto extra, S=4)", "histogramas/hist_s4.png")
-    imprimir_resultados_ks("ALTERNATIVA B (1 Operario, S=4)", tiempos_alt_b[:100], n_sim_ks=1000)
+    imprimir_resultados_ks("ALTERNATIVA B (1 Operario, S=4)", tiempos_alt_b[:10000], n_sim_ks=1000)
     
     # ---------------------------------------------------------
     # 3. ALTERNATIVA A: 2 Operarios, S = 3 (Segundo técnico)
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     tiempos_alt_a = [simular_fallo_2_tecnicos(n_cajas_repuesto=3) for _ in range(N_SIM)]
     imprimir_resultados_escenario("ALTERNATIVA A (2 Operarios, S=3)", tiempos_alt_a)
     graficar_histograma_y_ajuste(tiempos_alt_a, "Alternativa A (2 Operarios, S=3)", "histogramas/hist_2op.png")
-    imprimir_resultados_ks("ALTERNATIVA A (2 Operarios, S=3)", tiempos_alt_a[:100], n_sim_ks=1000)
+    imprimir_resultados_ks("ALTERNATIVA A (2 Operarios, S=3)", tiempos_alt_a[:10000], n_sim_ks=1000)
 
     print(f"\n{'-'*60}")
     print("Simulación, gráficos y tests K-S finalizados con éxito.")
